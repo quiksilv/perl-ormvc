@@ -1,0 +1,37 @@
+<link href="https://c3.transferto.com/shop/css/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<!--script src="https://c3.transferto.com/shop/css/bootstrap/js/bootstrap.min.js"></script-->
+<h1>[% controller %] Index</h1>
+<p><a href="?action=[% controller %]_edit" class="btn btn-large" type="button">Add [% controller %]</a></p>
+[% PROCESS pagination.html %] <!-- scaffold located in libs/templates/elements -->
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			[% FOREACH c IN columns %]
+				<th>[% c.name %]</th>
+			[% END %]
+			<th>Actions</th>
+		<tr>
+	</thead>
+	<tbody>
+	[% FOREACH t IN data.$model.keys.nsort %]
+		<tr>
+			[% FOREACH c IN columns %]
+				[% field = c.name %]
+				<td>
+					[% IF c.name == "id" %]
+						<a href="?action=[% controller %]_view&id=[% data.$model.$t.$field %]">[% data.$model.$t.$field %]</a>
+					[% ELSE %]
+						[% data.$model.$t.$field %]
+					[% END %]
+				</td>
+			[% END %]
+			<td>
+				<a class="btn" href="?action=[% controller %]_edit&id=[% data.$model.$t.id %]"><i class="icon-edit"></i> Edit</a>
+				<a class="btn" href="?action=[% controller %]_view&id=[% data.$model.$t.id %]"><i class="icon-info-sign"></i> View</a>
+				<a class="btn" href="?action=[% controller %]_delete&id=[% data.$model.$t.id %]"><i class="icon-remove-sign"></i> Delete</a>
+			</td>
+		</tr>
+	[% END %]
+	</tbody>
+</table>
+[% PROCESS pagination.html %] <!-- scaffold located in libs/templates/elements -->

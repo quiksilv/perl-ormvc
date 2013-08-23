@@ -1,0 +1,20 @@
+<link href="https://c3.transferto.com/shop/css/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<h1>Edit [% controller %]</h1>
+[% IF flash_message %]<div class="alert alert-success">[% flash_message %]</div>[% END %]
+<form name="[% controller %]" class="form-horizontal" method="POST" action="?action=[% query_string.action %]">
+		[% FOREACH c IN columns %]
+			[% field = c.name %]
+			<div class="control-group [% IF error.$field %]error[% END %]">
+				<label class="control-label" for="[% c.name %]">[% c.name %]</label>
+				<div class="controls">
+					<input type="text" name="[% c.name %]" placeholder="" value="[% data.$model.0.$field %]">
+					<span class="help-inline">[% error.$field %]</span>
+				</div>
+			</div>
+		[% END %]
+		<div class="form-actions">
+			<button class="btn btn-large btn-primary" type="submit" class="btn">Submit</button>
+			<a href="[% referrer %]" class="btn btn-large">Cancel</a>
+		</div>
+	<input type="hidden" name="action" value="[% query_string.action %]"><!-- necessary so the index file can pick up the action get parameter -->
+</form>

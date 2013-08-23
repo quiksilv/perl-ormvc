@@ -1,0 +1,9 @@
+<div class="pagination pagination-large">
+	<ul>
+		[% IF paging.PAGE_SET_PREVIOUS %]<li><a href="?action=[% controller %]_[% view %]&page=[% paging.PAGE_SET_PREVIOUS %]">Previous</a></li>[% END %]
+		[% FOREACH page IN paging.PAGE_SET_PAGES %]
+			<li class="[% IF paging.current_page == page %]active[% END %]"><a href="?action=[% controller %]_[% view %]&page=[% page %]">[% page %]</a></li>
+		[% END %]
+		[% IF paging.PAGE_SET_NEXT %]<li><a href="?action=[% controller %]_[% view %]&page=[% paging.PAGE_SET_NEXT %]">Next</a></li>[% END %]
+	</ul>
+</div>
